@@ -1,13 +1,38 @@
 //create array for cards in deck
-var cards = ['queen', 'queen', 'king', 'king'];
+var cards = [
+    {
+        rank: "queen",
+        suit: "hearts",
+        cardImage: "images/queen-of-hearts.png"
+    },
+    {
+        rank: "queen",
+        suit: "diamonds",
+        cardImage: "images/queen-of-diamonds.png"
+    },
+    {
+        rank: "king",
+        suit: "hearts",
+        cardImage: "images/king-of-hearts.png"
+    },
+    {
+        rank: "king",
+        suit: "diamonds",
+        cardImage: "images/king-of-diamonds"
+    }
+];
 //create empty array for selected cards
 var cardsInPlay = [];
 
 var flipCard = function(cardId) {
     // logs selected card
-    console.log("User flipped " + cards[cardId]);
+    console.log("User flipped " + cards[cardId].rank);
+    // 'sees' selected cards
+    console.log(cards[cardId].cardImage);
+    // logs suit of selected card
+    console.log(cards[cardId].suit);
     // adds selected card to cardsInPlay array
-    cardsInPlay.push(cards[cardId]);
+    cardsInPlay.push(cards[cardId].rank);
     // checks that 2 cards have been selected
     // checks for match, displays appropriate result
     if (cardsInPlay.length === 2) {
