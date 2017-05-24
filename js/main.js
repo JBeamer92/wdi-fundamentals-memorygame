@@ -18,13 +18,16 @@ var cards = [
     {
         rank: "king",
         suit: "diamonds",
-        cardImage: "images/king-of-diamonds"
+        cardImage: "images/king-of-diamonds.png"
     }
 ];
 //create empty array for selected cards
 var cardsInPlay = [];
 
-var flipCard = function(cardId) {
+var flipCard = function() {
+    // gets data-id of card that was clicked
+    cardId = this.getAttribute('data-id');
+
     // logs selected card
     console.log("User flipped " + cards[cardId].rank);
     // 'sees' selected cards
@@ -33,6 +36,9 @@ var flipCard = function(cardId) {
     console.log(cards[cardId].suit);
     // adds selected card to cardsInPlay array
     cardsInPlay.push(cards[cardId].rank);
+
+    this.setAttribute('src', cards[cardId].cardImage);
+
     // checks that 2 cards have been selected
     // checks for match, displays appropriate result
     if (cardsInPlay.length === 2) {
@@ -44,5 +50,14 @@ var flipCard = function(cardId) {
     }
 } // end function flipCard
 
-flipCard(0);
-flipCard(2);
+var createBoard = function() {
+    for (var i = 0; i < cards.length; i++) {
+        var cardElement = document.createElement('img');
+        cardElement.setAttribute('src', 'images/back.png');
+        cardElement.setAttribute('data-id', i);
+        cardElement.addEventListener('click', flipCard);
+        document.getElementById('game-board').appendChild(cardElement);
+    }
+}
+
+createBoard();
